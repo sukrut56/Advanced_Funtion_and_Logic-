@@ -1,18 +1,16 @@
-input_list = [1,2,3,4,[5,6,7,[8,9,[10, 11]]]]
+input_list = [1,2,[3,4],5,6,7,[8,[9,10]],11]
 
-list1 = input_list
-
-def sublist1(list):
-    if(len(list) > 1):              #checking length of list 
-        for j in list:              
-            if type(j) == type([]) :  #checking type of list 
-               return sublist1(j)     #returning the function so that recursion takes place
-            else:
-                continue              #continue until innermost list is reached
-    return list                       #returning the innermost list 
-
-sublist1(list1)                       #executing the function
-
-s = sublist1(list1)
-add = [t+1 for t in s]                #adding 1 to the list using list comprehension 
-print(add)
+def sublist1(lst):
+	if any(type(r) == list for r in lst) == False:
+		return [r+1 for r in lst]              #add 1 to the final list 
+	else: 
+		list1 = []                             #empty list so that we can later append to it 
+		for r in lst:
+			if isinstance(r, list):            #checking the nested list 
+				for t in r:
+					list1.append(t)         #appending value to the empty list 
+			else:
+				continue              
+	return sublist1(list1)                  #returning function so that recursion takes place                      
+                       
+print(sublist1(input_list))
