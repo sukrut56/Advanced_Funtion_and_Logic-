@@ -1,4 +1,4 @@
-#Q1
+#Q1 coded by Jackson 
 def q1(lst):
     while any(type(x) == list for x in lst): #if any of the elements in the list are also lists (nested) then enter loop
         x = 0 #start iterator
